@@ -27,7 +27,7 @@ if not sys.version_info[:2] >= (3, 4):
     exit(1)
 
 # Parse the config and stick in global "config" var.
-config = configparser.ConfigParser()
+config = configparser.RawConfigParser()
 for inifile in [
                 os.path.expanduser('~')+'/.feed2discord.ini',
                 'feed2discord.local.ini',
