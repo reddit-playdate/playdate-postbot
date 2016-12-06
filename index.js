@@ -64,7 +64,7 @@ function renderEmbed (obj) {
     type: 'rich',
     description: obj.data.selftext.substring(0, obj.data.selftext.indexOf('.') + 1),
     url: obj.data.url,
-    timestamp: new Date(),
+    timestamp: new Date(obj.data.created_utc * 1000),
     color: 16711680,
     footer: { text: `new post on /r/Playdate | /u/${obj.data.author}` },
     thumbnail: { url: obj.data.thumbnail },
