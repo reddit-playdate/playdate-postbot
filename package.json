@@ -1,0 +1,28 @@
+{
+  "name": "playdate-postbot",
+  "version": "1.0.0",
+  "description": "Passes new posts on Reddit to Discord webhook",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reddit-playdate/playdate-postbot.git"
+  },
+  "keywords": [
+    "Discord",
+    "Reddit"
+  ],
+  "author": "Reddit Playdate",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/reddit-playdate/playdate-postbot/issues"
+  },
+  "homepage": "https://github.com/reddit-playdate/playdate-postbot#readme",
+  "dependencies": {
+    "foreman": "^2.0.0",
+    "node-fetch": "^1.6.3",
+    "sqlite3": "^3.1.8"
+  }
+}
