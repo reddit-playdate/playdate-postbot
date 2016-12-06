@@ -1,1 +1,2 @@
-web: nodemon --watch index.js
+dev: nodemon --watch index.js
+web: node index.js
