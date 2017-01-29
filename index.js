@@ -19,8 +19,10 @@ const webhooks = {
   '#shooters': process.env.WH_FPS
 }
 
+const freq = 30 * 60 * 1000
+
 checkSub()
-setInterval(checkSub, 900000)
+setInterval(checkSub, freq)
 
 function checkSub () {
   fetch('https://www.reddit.com/r/Playdate/new/.json')
