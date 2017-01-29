@@ -11,9 +11,7 @@ if (!exists) {
 
 const webhooks = {
   '#lfg': process.env.WH_LFG,
-  '#counter-strike': process.env.WH_CS,
   '#rocket-league': process.env.WH_RL,
-  '#overwatch': process.env.WH_OW,
   '#cooperators': process.env.WH_COOP,
   '#strategists': process.env.WH_STRAT,
   '#survivalists': process.env.WH_SURV,
