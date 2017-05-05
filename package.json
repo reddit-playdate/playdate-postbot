@@ -22,11 +22,7 @@
   },
   "homepage": "https://github.com/reddit-playdate/playdate-postbot#readme",
   "dependencies": {
-    "foreman": "^2.0.0",
     "node-fetch": "^1.6.3",
     "sqlite3": "^3.1.8"
-  },
-  "devDependencies": {
-    "nodemon": "^1.11.0"
   }
 }
