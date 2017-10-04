@@ -1,17 +1,6 @@
-const fs = require('fs')
-const file = 'posts.db'
-const exists = fs.existsSync(file)
-const sqlite3 = require('sqlite3').verbose()
-const db = new sqlite3.Database(file)
 const fetch = require('node-fetch')
-
-if (!exists) {
-  db.run('CREATE TABLE Posts (name CHAR(9))')
-}
-
 const webhook = process.env.WEBHOOK
-
-const freq = 30 * 60 * 1000
+const freq = 10 * 60 * 1000
 
 checkSub()
 setInterval(checkSub, freq)
@@ -23,33 +12,26 @@ function checkSub () {
   })
   .then(json => {
     let newPosts = json.data.children
-    db.parallelize(function () {
-      for (let post of newPosts) {
-        let name = `"${post.data.name}"`
-        console.log(`Checking Post :name=${name}`)
-        db.get('SELECT * FROM Posts WHERE name=(?)', [name], (err, row) => {
-          if (err) { return console.log(err) }
-          if (row) {
-            return console.log(`Post :name=${name} already seen.`)
-          } else {
-            fetch(webhook,
-              {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'multipart/form-data'
-                },
-                body: JSON.stringify({ embeds: [renderEmbed(post)] })
-              })
-            db.run('INSERT INTO Posts VALUES (?)', [name])
+    for (let post of newPosts) {
+      let time = Math.floor(Date.now() / 1000)
+      if (post.data.created_utc < time - freq) {
+        return
+      } else {
+        fetch(webhook,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            },
+            body: JSON.stringify({ embeds: [renderEmbed(post)] })
           }
-        })
+        )
       }
-    })
-  })
-}
+    }
+  }
+)
 
 function renderEmbed (obj) {
-  if (!obj.kind || obj.kind !== 't3') { return }
   return {
     title: obj.data.title,
     type: 'rich',
