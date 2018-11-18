@@ -1,11 +1,7 @@
 # playdate-postbot
 
-Gets new posts from /r/Playdate, posts them to Discord webhooks.
-
-## Installation
-
-Requires [Node](https://nodejs.org/en/). Install dependencies with `npm install`. You'll have a good time if you install `foreman` and `nodemon` globally.
+Gets new posts from a subreddit and post them to a Discord webhook.
 
 ## Usage
 
-The Procfile specifies `dev` and `web` processes. Use `nf start <process>` to load environment variables and start the app. The environment file holds URIs for Discord webhooks. These are referenced in an object inside of `index.js` for easy access. If you only want to use this app with one webhook, it would be much easier to simply `fetch()` from one URL.
+Meant for deployment with AWS Lambda. The WEBHOOK and SUBREDDIT environment variables are URLs. Append `.json` to the end of your subreddit URL or you're going to have a bad time. Also maybe think about adjusting the argument to `timedelta()` depending how busy/slow the subreddit is.
